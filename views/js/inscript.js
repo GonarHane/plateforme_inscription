@@ -7,13 +7,14 @@ let password1 = document.getElementById("password1")
 let email = document.getElementById("email")
 let firstname = document.getElementById("firstname")
 let champreqFirstname = document.getElementById("champ-reqFirstname")
-let name = document.getElementById("name")
+let nom = document.getElementById("name")
 let champreqNname = document.getElementById("champ-reqName")
 let role = document.getElementById("role")
 let champreqRole = document.getElementById("champ-reqRole")
 let champreqPass2 = document.getElementById("champ-reqPass2")
 let password2 = document.getElementById("password2")
-let confpass = document.getElementById("confPass2")
+let confpass = document.getElementById("confPass")
+ 
 
 
   const checkEmail = () =>{
@@ -47,7 +48,7 @@ return false;
   const resetPass = () =>{
     champreqPass1.classList.remove("d-flex")
     champreqPass1.classList.add("d-none")
-    password1.style.border="1px solid green"
+    password1.style.border="1px solid red"
   }
 
   const checkmdp = () =>{
@@ -75,16 +76,61 @@ return false;
         champreqPass2.classList.add("d-flex")
         password2.style.border= "1px solid red"
         return false;
-    }
+        }
+        if (password2.value !== password1.value){
+            confpass.classList.remove("d-none")
+            confpass.classList.add("d-flex")
+            password1.style.border="1px solid red"
+            password2.style.border="1px solid red"
+            return false;
+        }
+    
     resetPass1()
     return true;
   }  
+  /* controle prenom */
+  const resetPrenom = () =>{
+    champreqFirstname.classList.remove("d-flex")
+    champreqFirstname.classList.add("d-none")
+    firstname.style.border="1px solid "
+  }
+
+  const checkPrenom = () =>{
+    resetPrenom()
+    if(firstname.value === ""){
+        champreqFirstname.classList.remove("d-none")
+        champreqFirstname.classList.add("d-flex")
+        password1.style.border= "1px solid red"
+        return false;
+    }
+    resetPrenom()
+    return true;
+  }  
+  /* controle nom */
+  const resetNom = () =>{
+    champreqNname.classList.remove("d-flex")
+    champreqNname.classList.add("d-none")
+    nom.style.border="1px solid "
+  }
+
+  const checkNom = () =>{
+    resetNom()
+    if(firstname.value === ""){
+        champreqNname.classList.remove("d-none")
+        champreqNname.classList.add("d-flex")
+        nom.style.border= "1px solid red"
+        return false;
+    }
+    resetNom()
+    return true;
+  }  
+  /* controle de saisie role */
 
 
 
   submit.addEventListener("click",(e) => {
     console.log("clicked");
-  if((!checkEmail() && !checkmdp() && !checkmdp1() ) || !checkEmail() || !checkmdp() || !checkmdp1()){
+  if((!checkEmail() && !checkmdp() && !checkmdp1() && !checkPrenom() && !checkNom() ) || !checkEmail() || !checkmdp() || !checkmdp1() || !checkPrenom()|| !checkNom() ){
     e.preventDefault()
   }
 

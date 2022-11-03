@@ -63,6 +63,7 @@
                     </div> 
                     <div class="col-md-6-offset-6">
                          <button class="btn btn-primary" name="submit" id="submit" type="submit" >Se connecter</button> 
+                         <a href="inscription.php" class="text-left mt-4">Inscription ? </h5>
                     </div>
 
                 

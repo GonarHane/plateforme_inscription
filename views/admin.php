@@ -25,9 +25,9 @@
             <div class="part1 col-lg-3  " style="border: 1px solid blue;height: 50rem;">
                 <div>
                     <div class="logo ">
-                        <img class="logo mx-auto" src="image/logo.png" alt="logo" style="width: 8rem;height: 8rem;"><br><br>
+                        <img class="logo mx-auto" src="models/images/2rives.jpeg" alt="logo" style="width: 8rem;height: 8rem;"><br><br>
                         <hr>
-                        <div class="d-block  monTitre text-center" style="background-color:  rgba(252, 220, 181, 1);">
+                        <div class="d-block  monTitre text-center" style="background-color:  orange;">
                             <h4>Tableau de bord</h4>
                         </div>
                         <p class="para text-center p-3"><img src="image/utilisateur.png" style="width: 2rem;height: 2rem;" alt=""><strong>Utilisateurs</strong></p>
@@ -85,6 +85,11 @@
                                    <td>'.$email.'</td>
                                    <td>'.$matricule.'</td>
                                    <td>'.$role.'</td>
+                                   <td>
+                                   <button><i class="bi bi-archive"></i>
+                                   </button>
+                                   </td>
+                                  
                                     </tr>
                                    ';
                                   }

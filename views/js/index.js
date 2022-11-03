@@ -5,7 +5,8 @@ let submit = document.getElementById("submit")
 let champreqPass = document.getElementById("champ-reqPass")
 let password = document.getElementById("password")
 let email = document.getElementById("email")
-  const checkEmail = () =>{
+/* controle de saisie mail */
+const checkEmail = () =>{
     reset ()
     if(email.value === ""){
         champreqEmail.classList.remove("d-none")
@@ -38,6 +39,7 @@ return false;
     
   }
 
+  /* controle de saisie mdp */
   const checkmdp = () =>{
     resetPass()
     if(password.value === ""){

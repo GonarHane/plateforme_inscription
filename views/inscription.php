@@ -65,7 +65,7 @@ $photo = $POST["photo"];
                     <div class="col-md-6 mb-2">
                         <label for="role">Role<span class="red"> *</span> </label>
                         <select class="form-select" class="form-control" name="role" id="role" aria-label="Default select example" >
-                            <option selected>sélectionner votre role</option>
+                            
                             <option value="1">administrateur</option>
                             <option value="2">utilisateur</option>
                         </select>
@@ -83,6 +83,7 @@ $photo = $POST["photo"];
                         <input type="password" class="form-control" name="password2" id="password2" placeholder="confirmer votre mot de passe">
                         <p class="comments d-none" id="champ-reqPass2">Champ requis</p>
                         <p class="comments d-none" id="confPass">email non conforme</p>
+                        <!-- <p class="comments d-none" id="confPassConform">mots de passe non conformes</p> -->
                     </div>
                     <div class="col-md-6 mb-2">
                         <label for="photo" class="form-label">Photo</label>
