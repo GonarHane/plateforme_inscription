@@ -1,0 +1,87 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: solid 2px;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    border: solid black 2px;
+}
+.formul{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    border: solid black 2px;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+ */
+ body{
+    font-family: "ubuntu", sans-serif;
+    margin: 70px 0px;
+    background-color: #fff;
+ }
+ .divider{
+    width:800px ;
+    height: 2px;
+    background-color: orange;
+    margin: 0 auto;
+    /* justify-content: center; */
+ }
+ .heading{
+    text-align: center;
+    margin-bottom: 60px;
+    /* justify-content: center; */
+ }
+ .h2{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: black;
+ }
+ #inscription_post{
+    font-size: 20px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    justify-content: center;
+ }
+ .red{
+   color:red
+ }
+ .form-control{
+   height: 50px;
+   font-size: 18px;
+ }
+ .comments{
+   font-style: italic;
+   font-size: 18px;
+   color: #d82c2e;
+   height:25px;
+
+ }
+ #inscription_post input[type=submit]{
+   margin: 40px auto 0px;
+   display: block;
+ }
+ .button1{
+   border:1px solid #ddd;
+   background:#ffa500 ;
+   color: #fff;
+   width: 100%;
+   font-weight: bold;
+   text-transform: uppercase;
+   padding: 18px;
+   border-radius: 5px;
+   transition: all 0,3s ease-in 0s;
+ }
+ .button1:hover{
+   background: #333;
+   border-color: #ffa500;
+ }
+ 
