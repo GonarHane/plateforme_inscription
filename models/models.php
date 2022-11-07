@@ -6,7 +6,7 @@ class ModelUser
     {
         try {
 
-            $this->db = new PDO('mysql:host=127.0.0.1;dbname=inscription;', 'root', '');
+            $this->db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
         } catch (Exception $e) {
             die("Connection erreur du à " . $e->getMessage());
         }
@@ -25,23 +25,24 @@ class ModelUser
             $randomString .= $characters[$index];
         }
     
-        return 'MAE'.$randomString;
+        return 'US'.$randomString;
     }
-    public function ajoutUser($nom,$prenom,$password,$role,$matricule,$email){
+    public function ajoutUser($nom,$prenom,$mot_de_passe,$role,$matricule,$email, $photo,$date_heure){
            
         try {
-            $sql=$this->db->prepare('INSERT INTO `users` (`nom`, `matricule`,`nom`,`prenom`,`mail`,`roles`,`mdp`,`etat`)
-                                        VALUES (:nom,:prenom,:passwords,:roles,:matricule,:etat,:email)');
+            $sql=$this->db->prepare('INSERT INTO `user` (`nom`, `prenom`,`mdp`,`roles`,`matricule`,`etat`,`mail`, `photo`,`date_ajout`)
+                                        VALUES (:nom,:prenom,:mot_de_passe,:roles,:matricule,:etat,:email, :photo,:date_heure)');
            
                     $sql->execute(array(
                         'matricule' => $matricule,
                         'nom' =>$nom,
                         'prenom' => $prenom,
-                        'mail'=>$email,
+                        'mail'=>$email,                       
                         'roles' => $role,
-                        'mdp' => $password,
-                        'etat' => 1
-                        
+                        'mdp' => $mot_de_passe,
+                        'etat' => 1,
+                        'date_ajout'=> $date_heure,
+                        'photo' => $photo
                     
                     ));  
                 
@@ -65,6 +66,7 @@ class ModelUser
             //throw $th;
         }
     }
+    // 
     public function selectUser($email)
     {
         try {

@@ -34,9 +34,10 @@ if (isset($_POST['submit'])){
             header('location: ../views/inscription.php');
             exit;
         }
-
+        $mat = $requeste->generateMatricule();
+        $pass = password_hash($mdp, PASSWORD_DEFAULT);
         //insertion dans bd
-        $insert = $bd -> query ("INSERT INTO users (nom, prenom, mail, roles, mdp) VALUES('$nom','$prenom','$email', '$roles', '$mdp')");
+        $insert = $bd -> query ("INSERT INTO users (matricule, nom, prenom, mail, roles, mdp) VALUES('$mat','$nom','$prenom','$email', '$roles', '$pass')");
         header('location: ../views/connexion.php');
         exit;
     }

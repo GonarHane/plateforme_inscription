@@ -2,7 +2,7 @@
      
  
 /*  tester si la variable submit existe */
-  if(isset($_POST["submit"]))
+ /*  if(isset($_POST["submit"]))
   {
     $message = "";
       if(isset($_POST["email"]) && isset($_POST["password"]))
@@ -20,7 +20,8 @@
             include('trtmtConnect.php');
            }
         }
-    }
+    } */
+    include ("location:../controllers/trtmtConnect.php")
 ?>
 
 
@@ -42,14 +43,14 @@
     <div class="container">
 
     
-    <!-- <header><img style=" width: 100% ; height:300px;"src="../models/images/sky4.jpg" alt="" /> -->
+     <!-- <header><img style=" width: 100% ; height:300px;"src="../models/images/sky4.jpg" alt="" />  -->
     <div class="divider"></div>
     <div class="heading">
         <h2> Connection</h2>
     </div>
     <div class="row">
         <div class="col-lg-10 col-lg-offset-2">
-            <form id="connection" method="post" action="" role="form">
+            <form id="connection" method="post" action="../controllers/trtmtConnect.php" role="form">
                     <div class="col-md-6 mb-4">
                         <label for="email">Email<span class="red">*</span> </label>
                         <input type="text" id="email" name="email" class="form-control" placeholder="votre mail">

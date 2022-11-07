@@ -30,7 +30,7 @@
                 <a href=""><i class="bi bi-box-arrow-right text-white"></i></a>
                 </span>
             </div>
-            <h1 class="d-flex justify-content-center">Espace Administrateur</h1>
+            <h1 class="d-flex justify-content-center">Espace utilisateurs</h1>
             <div class="row mt-5">
                 <table class="table table-striped table-bordered">
                     <thead class="text-white btn-lg text-center" style="background-color:orange">
@@ -40,31 +40,33 @@
                             <th scope="col">Email</th>
                             <th scope="col">Matricule</th>
                             <th scope="col">Role</th>
-                            <th scope="col">Action</th>
+                            <!-- <th scope="col">Action</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                         <?php
                   /* pour archiver  */
-                  $db= new PDO('mysql:host=localhost;dbname=inscription;','root','');
-                        $sql=$db->query('SELECT * FROM users WHERE `roles` ="administrateur" and etat=1');
+                  $email = $_SESSION['mail'];
+                  $db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
+                  $sql = $db->query("SELECT * FROM users WHERE mail != '$email' and etat=1");
+                  
 
                         while($a = $sql->fetch()){
                             
                                 echo ' <tr  scope="row">';
                                     echo '<td>'.$a['nom'].'</td>';
                                     echo '<td>'.$a['prenom'].'</td>';
-                                    echo '<td>'.$a['email'].'</td>';
+                                    echo '<td>'.$a['mail'].'</td>';
                                     echo '<td>'.$a['matricule'].'</td>';
-                                    echo '<td>'.$a['role'].'</td>';
+                                    echo '<td>'.$a['roles'].'</td>';
                                 
-                                    echo "<td>
+                                   /*  echo "<td>
                                     <form action='mod_employer.php' method='post'> 
                                     <input type='hidden' name='id_em' value=".$a["id"].">
                                     <button type='submit' class='btn btn-outline-danger'>archiver</button>
                                     </form>
-                                    </td>";
+                                    </td>"; */
 
                                     
 
@@ -76,10 +78,10 @@
                   ?>
 
                     </tbody>
-                                <span class="d-flex gap-4 offset-3">
+                               <!--  <span class="d-flex gap-4 offset-3">
                                 <a href=""><i class="bi bi-pencil-square text-dark"></i></a>
                                 <a href=""><i class="bi bi-archive-fill text-dark"></i></a>
-                                <a href=""><i class="bi bi-arrow-repeat text-dark"></i></a>
+                                <a href=""><i class="bi bi-arrow-repeat text-dark"></i></a> -->
                                 </span>
                             </td>
                         </tr>

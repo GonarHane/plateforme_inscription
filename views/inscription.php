@@ -15,6 +15,8 @@ $password2 = $POST["password2"];
 $photo = $POST["photo"];
 } */
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -66,8 +68,8 @@ $photo = $POST["photo"];
                         <label for="role">Role<span class="red"> *</span> </label>
                         <select class="form-select" class="form-control" name="role" id="role" aria-label="Default select example" >
                             
-                            <option value="1">administrateur</option>
-                            <option value="2">utilisateur</option>
+                            <option>administrateur</option>
+                            <option>utilisateur</option>
                         </select>
                         <p class="comments d-none" id="champ-reqRole">Champ requis</p>
                         

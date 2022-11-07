@@ -42,7 +42,7 @@ return false;
     champreqEmail.classList.add("d-none")
     emailInvalid.classList.remove("d-flex")
     emailInvalid.classList.add("d-none")
-    email.style.border= "1px solid black"
+    email.style.border= "1px solid red"
   }
        /* vérification mdp1 */
   const resetPass = () =>{
