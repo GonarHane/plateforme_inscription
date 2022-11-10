@@ -80,8 +80,8 @@ return false;
         if (password2.value !== password1.value){
             confpass.classList.remove("d-none")
             confpass.classList.add("d-flex")
-            password1.style.border="1px solid red"
-            password2.style.border="1px solid red"
+            /* password1.style.border="1px solid red" */
+            confpass.style.border="1px solid red"
             return false;
         }
     
@@ -92,7 +92,7 @@ return false;
   const resetPrenom = () =>{
     champreqFirstname.classList.remove("d-flex")
     champreqFirstname.classList.add("d-none")
-    firstname.style.border="1px solid "
+    firstname.style.border="1px solid  red"
   }
 
   const checkPrenom = () =>{
@@ -110,7 +110,7 @@ return false;
   const resetNom = () =>{
     champreqNname.classList.remove("d-flex")
     champreqNname.classList.add("d-none")
-    nom.style.border="1px solid "
+    nom.style.border="1px solid red "
   }
 
   const checkNom = () =>{

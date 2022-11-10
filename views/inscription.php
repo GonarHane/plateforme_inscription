@@ -34,17 +34,21 @@ $photo = $POST["photo"];
 </head>
 
 <body>
-    <div class="container">
+    <div class="container position">
 
     
-    <!-- <header><img style=" width: 100% ; height:300px;"src="../models/images/sky4.jpg" alt="" /> -->
-    <div class="divider"></div>
-    <div class="heading">
-        <h2> FORMULAIRE INSCRIPTION</h2>
-    </div>
+     <header><img style=" width: 100% ; height:300px;"src="../models/images/sky4.jpg" alt="" ></header>
+    
+    
     <div class="row">
         <div class="col-lg-10 col-lg-offset-2">
             <form id="inscription_post" method="POST" action="../controllers/trtmtInscription.php">
+            <div class="heading">
+
+<h2> FORMULAIRE INSCRIPTION</h2>
+</div>
+
+<div class="divider"></div>
                 <div class="row">
                     <div class="col-md-6 mb-2">
                         <label for="prenom">Prenom<span class="red"> *</span> </label>
@@ -85,7 +89,7 @@ $photo = $POST["photo"];
                         <input type="password" class="form-control" name="password2" id="password2" placeholder="confirmer votre mot de passe">
                         <p class="comments d-none" id="champ-reqPass2">Champ requis</p>
                         <p class="comments d-none" id="confPass">email non conforme</p>
-                        <!-- <p class="comments d-none" id="confPassConform">mots de passe non conformes</p> -->
+                         <p class="comments d-none" id="confPassConform">mots de passe non conformes</p> 
                     </div>
                     <div class="col-md-6 mb-2">
                         <label for="photo" class="form-label">Photo</label>
@@ -94,6 +98,7 @@ $photo = $POST["photo"];
                     </div> 
                     <div class="col-md-6-offset-6">
                         <button class="btn btn-primary"  class="button1" name="submit" id="submit" type="submit" value="envoyer">S'inscrire</button>
+                        <a  href="connexion.php" class="text-right mt-4">se connecter </a>
                     </div>
                 </div>
             </form>

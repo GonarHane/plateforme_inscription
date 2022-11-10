@@ -21,7 +21,7 @@
            }
         }
     } */
-    include ("location:../controllers/trtmtConnect.php")
+    //include ("location:../controllers/trtmtConnect.php")
 ?>
 
 
@@ -40,43 +40,47 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container position">
 
     
-     <!-- <header><img style=" width: 100% ; height:300px;"src="../models/images/sky4.jpg" alt="" />  -->
-    <div class="divider"></div>
-    <div class="heading">
-        <h2> Connection</h2>
-    </div>
+     <header><img style=" width: 100% ; height:300px;"src="../models/images/sky4.jpg" alt="" /></header>
+    
     <div class="row">
         <div class="col-lg-10 col-lg-offset-2">
             <form id="connection" method="post" action="../controllers/trtmtConnect.php" role="form">
-                    <div class="col-md-6 mb-4">
+            <div class="heading">
+
+<h2> Connection</h2>
+</div>
+<div class="divider"></div>
+<div class="row">
+                    <div class="col-md-6 mb-2">
                         <label for="email">Email<span class="red">*</span> </label>
                         <input type="text" id="email" name="email" class="form-control" placeholder="votre mail">
                         <p class="comments d-none" id="champ-reqEmail">Champ requis</p>
                         <p class="comments d-none" id="email-invalid">Email invalide</p>
                     </div> 
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 mb-6">
                         <label for="inputPassword2">Mot de passe<span class="red">*</span></label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="votre mot de passe">
                         <p class="comments d-none" id="champ-reqPass">Champ requis</p>
                     </div> 
                     <div class="col-md-6-offset-6">
                          <button class="btn btn-primary" name="submit" id="submit" type="submit" >Se connecter</button> 
-                         <a href="inscription.php" class="text-left mt-4">Inscription ? </h5>
+                         <a href="inscription.php" class="text-right mt-4">Inscription ? </a>
                     </div>
-
+                </div>
                 
 
             </form>
             </div>
-    </div>
+    
       
    
     
 
     </div>  
+    </div>
      
 <!-- <script type="text/javascript">
 function verif_formulaire()

@@ -10,7 +10,8 @@ if (isset($_POST["submit"])){
     $email=$_POST["email"];
     $mot_de_passe=$_POST["password"];
     $user = $requeste->selectUser($email);
-    if (!$user || password_verify($mot_de_passe, $user['password'])){
+    
+    if (count($user) === 0 || !password_verify($mot_de_passe, $user['mdp'])){
         header('location: ../views/connexion.php?erreur=Email ou mot de passe incorrect');
         exit;
     }

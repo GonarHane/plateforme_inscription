@@ -1,12 +1,12 @@
-/* *{
+ *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} 
 .content{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
     border: solid 2px;
     width: 70%;
     justify-content: center;
@@ -18,38 +18,49 @@
     justify-items: center;
     align-items: center;
     border: solid black 2px;
-    flex-wrap: wrap;
-    flex-direction: column;
+     flex-wrap: wrap;
+    flex-direction: column; 
 }
- */
+ 
  body{
     font-family: "ubuntu", sans-serif;
     margin: 70px 0px;
     background-color: #fff;
  }
  .divider{
-    width:800px ;
+    width:400px ;
     height: 2px;
     background-color: orange;
     margin: 0 auto;
-    /* justify-content: center; */
+     justify-content: center; 
+     margin-bottom: 30px;
+    
  }
  .heading{
     text-align: center;
     margin-bottom: 60px;
-    /* justify-content: center; */
+    justify-content: center; 
  }
  .h2{
-    text-transform: uppercase;
+    text-transform: uppercase; 
     font-weight: bold;
     color: black;
+    margin-bottom: 2px;
  }
  #inscription_post{
     font-size: 20px;
     background-color: white;
-    padding: 40px;
-    border-radius: 10px;
+    padding: 10px;
+    border: solid grey 2px;
+    border-radius:  10px;
     justify-content: center;
+  
+    top: 200px;
+    position: absolute;
+    width: 800px;
+    justify-content: center;
+    margin-left: 240px;
+    
  }
  .red{
    color:red
@@ -83,5 +94,10 @@
  .button1:hover{
    background: #333;
    border-color: #ffa500;
+ }
+ .position{
+ top: 150px;
+ justify-content: center;
+ border: solid grey;
  }
  

@@ -39,7 +39,7 @@
                         <?= $_SESSION['mail'] ?? null ?>
                         
                         <span style="margin-left: auto">
-                            <h4><a href="archiver.php" class="text-white">liste des non actifs</a> </h4>
+                            <h4><a href="admin.php" class="text-white">liste des actifs</a> </h4>
                         </span>
                     </span>
                     
@@ -88,10 +88,10 @@
 
                                 echo '<td class= "border border-2 border-dark">
 
-                                    <span style="display:flex; justify-content:space-between;font-size:30px;">
-                                    <a title="modifier" href="modification.php?email='.$a['mail'].'"><i class="bi bi-pencil-square "></i></a>
-                                    <a title="archiver" href="archive.php?archive"><i class="bi bi-archive-fill text-red"></i></a>
-                                    <a title="switcher" href="changer.php?swite"><i class="bi bi-arrow-repeat "></i></a>
+                                    <span style="display:flex; justify-content:center;font-size:30px;">
+                                    
+                                    <a title="desarchiver" href="archive.php?archive"><i class="bi bi-arrow-bar-up"></i></a>
+                                    
                                     </span>
 
                                     </td>';

@@ -55,7 +55,7 @@ class ModelUser
     public function getUser($email)
     {
         try {
-            $sql = "SELECT * FROM `users` WHERE mail='$email'";
+            $sql = "SELECT * FROM `users` WHERE mail='$email'if etat='1'";
             $res = $this->db->query($sql);
             if ($res->rowCount() > 0){
                 return true;
@@ -69,6 +69,7 @@ class ModelUser
     // 
     public function selectUser($email)
     {
+        
         try {
             $sql = "SELECT * FROM `users` WHERE mail='$email'";
             $res = $this->db->query($sql);
@@ -81,5 +82,56 @@ class ModelUser
             //throw $th;
         }
     }
-
+    /* public fonction disconnectUser($email)
+    {
+        try{
+            $sql
+        }
+    } */
+    public function updateUser($email,$prenom,$nom, $ancienEmail)
+    {
+        try {
+            $sql = "SELECT * FROM `users` WHERE mail='$email'";
+            $res = $this->db->query($sql);
+            
+            if ($res->rowCount() > 0){
+               
+                /* if ($res['mail'] !== $ancienEmail) {
+                    header("location: modification.php");
+                    exit;
+                } */
+                $sql2 =  "UPDATE users SET mail='$email', SET prenom='$prenom', SET nom='$nom' WHERE mail='$ancienEmail'";
+                $this->db->exec($sql2);
+                header("location: admin.php");
+                exit;
+            }
+            
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+    public function archiveUser($email,$prenom,$nom)
+    {
+        try {
+            $sql = "SELECT * FROM `users` WHERE mail='$email'";
+            $res = $this->db->query($sql);
+            
+            if ($res->rowCount() > 0){
+               
+                /* if ($res['mail'] !== $ancienEmail) {
+                    header("location: modification.php");
+                    exit;
+                } */
+                $sql2 =  "UPDATE users SET mail='$email', SET prenom='$prenom', SET nom='$nom' WHERE mail='$email'";
+                $this->db->exec($sql2);
+                header("location: admin.php");
+                exit;
+            }
+            
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 }

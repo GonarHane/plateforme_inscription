@@ -25,9 +25,14 @@
             <div class="row text-white btn-lg text-center mt-2" style="background-color:blue;">
                 <span class="d-flex">
                 <ul>
-                    <li>liste des archives</li>
+                    <li><a href="../views/deconnexion.php" class="mt-1"><i class="bi bi-box-arrow-right text-white "></i></a></li>
                 </ul>
-                <a href=""><i class="bi bi-box-arrow-right text-white"></i></a>
+                <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-secondary " type="submit">Rechercher</button>
+                        </form>
+                    </div>
                 </span>
             </div>
             <h1 class="d-flex justify-content-center">Espace utilisateurs</h1>
@@ -49,7 +54,7 @@
                   /* pour archiver  */
                   $email = $_SESSION['mail'];
                   $db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
-                  $sql = $db->query("SELECT * FROM users WHERE mail != '$email' and etat=1");
+                  $sql = $db->query("SELECT * FROM users WHERE mail != '$email' AND etat=1");
                   
 
                         while($a = $sql->fetch()){
