@@ -17,10 +17,7 @@ if (isset($_POST["submit"])){
     }
     /* var_dump($_POST); */
     // pour la recupération au niveau de la bd(admin)
-    // $_SESSION['matricule'] = $user['matricule'];
-    // $_SESSION['nom'] = $user['nom'];
-    // $_SESSION['prenom'] = $user['prenom'];
-    // $_SESSION['photo'] = $user['photo'];
+    
     else if ($user['roles'] === 'administrateur'){
         $_SESSION['roles'] = $user['roles'];
         $_SESSION['matricule'] = $user['matricule'];
@@ -31,23 +28,7 @@ if (isset($_POST["submit"])){
         header('location: ../views/admin.php');
         exit;
     }
-    // if ($user['roles'] === 'administrateur'){
-    //     $_SESSION['roles'] = $user['roles'];
-    //     header('location: admin.php');
-    //     exit;
-    // }
-        
-    // pour la recupération au niveau de la bd(user)
-    // $_SESSION['matricule'] = $user['matricule'];
-    // $_SESSION['nom'] = $user['nom'];
-    // $_SESSION['prenom'] = $user['prenom'];
-    // $_SESSION['photo'] = $user['photo'];
-    // if ($user['roles'] === 'utilisateur'){
-    //     $_SESSION['roles'] = $user['roles'];
-
-    //     header('location: user.php');
-    //     exit;
-    // }
+    
     if ($user['roles'] === 'utilisateur')
     {
         $_SESSION['roles'] = $user['roles'];

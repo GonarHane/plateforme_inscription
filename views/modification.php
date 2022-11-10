@@ -88,30 +88,7 @@ if (isset($_GET['email'])) {
     </div>  
     </div>
      
-<!-- <script type="text/javascript">
-function verif_formulaire()
- 
-{var  msg = ""; 
- 
- if(document.form.email.value == "")  {
- msg += "Veuillez saisir un mail \n";
- 
-   document.form.email.focus();
-   }
-   if(document.form.password.value == "")  {
- msg += "Veuillez saisir un mot de passe \n";
- 
-   document.form.password.focus();
-   }
-  if (msg != "" )
-{
-alert(msg);
-return false;
-}
- 
-} // fin fonction 
- 
-</script> -->
+
 <script src="./js/index.js"></script> 
 </body>
 

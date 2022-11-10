@@ -20,14 +20,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<!-- background-color:RGB(51, 21, 15) -->
+
 
 <body class="bd-secondary">
     <div class="container border-danger">
         <div class="container admin col-lg-12 mt-4 ">
             <div class="row text-white btn-lg text-center mb-8 mt-2 border border-primary" style="background-color:RGB(135, 206, 235)">
                 <span class="d-flex justify-content-center">
-                    <!-- pour l'affichage sur le profil -->
+                    <!-- pour l'affichage des infos sur le profil -->
                     <span class="col-1 ">
                         <img src="data:image/jpg;base64,<?= base64_encode($_SESSION['photo']) ?>" class="rounded-circle" height="60" width="60" alt="">
                         <em><?= $_SESSION['matricule'] ?? null ?></em>
@@ -76,7 +76,7 @@
                             $email = $_SESSION['mail'];
                             $db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
                             $sql = $db->query("SELECT * FROM users WHERE mail != '$email' and etat=1");
-                            /* $sql = $db->query('SELECT * FROM users WHERE `roles` ="utilisateur" and etat=1'); */
+                            
                             while ($a = $sql->fetch()) {
 
                                 echo ' <tr  scope="row">';

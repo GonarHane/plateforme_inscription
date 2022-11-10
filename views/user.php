@@ -45,7 +45,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Matricule</th>
                             <th scope="col">Role</th>
-                            <!-- <th scope="col">Action</th> -->
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -66,12 +66,7 @@
                                     echo '<td>'.$a['matricule'].'</td>';
                                     echo '<td>'.$a['roles'].'</td>';
                                 
-                                   /*  echo "<td>
-                                    <form action='mod_employer.php' method='post'> 
-                                    <input type='hidden' name='id_em' value=".$a["id"].">
-                                    <button type='submit' class='btn btn-outline-danger'>archiver</button>
-                                    </form>
-                                    </td>"; */
+                                   
 
                                     
 
@@ -83,10 +78,7 @@
                   ?>
 
                     </tbody>
-                               <!--  <span class="d-flex gap-4 offset-3">
-                                <a href=""><i class="bi bi-pencil-square text-dark"></i></a>
-                                <a href=""><i class="bi bi-archive-fill text-dark"></i></a>
-                                <a href=""><i class="bi bi-arrow-repeat text-dark"></i></a> -->
+                             
                                 </span>
                             </td>
                         </tr>

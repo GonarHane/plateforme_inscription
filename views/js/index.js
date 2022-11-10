@@ -39,7 +39,7 @@ return false;
     
   }
 
-  /* controle de saisie mdp */
+  /* controle de saisie mot de pass */
   const checkmdp = () =>{
     resetPass()
     if(password.value === ""){
