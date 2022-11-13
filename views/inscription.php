@@ -42,7 +42,7 @@ $photo = $POST["photo"];
     
     <div class="row">
         <div class="col-lg-10 col-lg-offset-2">
-            <form id="inscription_post" method="POST" action="../controllers/trtmtInscription.php">
+            <form id="inscription_post" enctype="multipart/form-data" method="POST" action="../controllers/trtmtInscription.php">
             <div class="heading">
 
 <h2> FORMULAIRE INSCRIPTION</h2>
@@ -88,7 +88,7 @@ $photo = $POST["photo"];
                     <label for="inputPassword2">Confirmation du mot de passe<span class="red">*</span></label>
                         <input type="password" class="form-control" name="password2" id="password2" placeholder="confirmer votre mot de passe">
                         <p class="comments d-none" id="champ-reqPass2">Champ requis</p>
-                        <p class="comments d-none" id="confPass">email non conforme</p>
+                        <p class="comments d-none" id="confPass">mot de passe non conforme</p>
                          <p class="comments d-none" id="confPassConform">mots de passe non conformes</p> 
                     </div>
                     <div class="col-md-6 mb-2">

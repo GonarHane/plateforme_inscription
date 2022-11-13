@@ -75,7 +75,7 @@
                             <?php
                             $email = $_SESSION['mail'];
                             $db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
-                            $sql = $db->query("SELECT * FROM users WHERE mail != '$email' and etat=1");
+                            $sql = $db->query("SELECT * FROM users WHERE mail != '$email' and etat=0");
                             
                             while ($a = $sql->fetch()) {
 
@@ -90,7 +90,7 @@
 
                                     <span style="display:flex; justify-content:center;font-size:30px;">
                                     
-                                    <a title="desarchiver" href="archive.php?archive"><i class="bi bi-arrow-bar-up"></i></a>
+                                    <a title="desarchiver" href="desarchive.php?email='.$a["mail"].'"><i class="bi bi-arrow-bar-up"></i></a>
                                     
                                     </span>
 

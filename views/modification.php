@@ -17,7 +17,7 @@ if (isset($_GET['email'])) {
          $prenom = $_POST["prenom"];
          $nom = $_POST["nom"];
          $mail = $_GET['email'];
-        
+      
          $requeste->updateUser($email, $prenom, $nom, $mail);
     }
     }

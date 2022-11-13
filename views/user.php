@@ -23,15 +23,30 @@
     <div class="container ">
         <div class="container admin col-lg-12 mt-4">
             <div class="row text-white btn-lg text-center mt-2" style="background-color:blue;">
-                <span class="d-flex">
+            <span class="col-1 ">
+                        <img src="data:image/jpg;base64,<?= base64_encode($_SESSION['photo']) ?>" class="rounded-circle" height="60" width="60" alt="">
+                        <em><?= $_SESSION['matricule'] ?? null ?></em>
+                    </span>
+
+                    <span class="d-flex  mt-4  w-50" style="max-height: 2rem;">
+                        <?= $_SESSION['prenom'] ?? null ?>
+                        <?= $_SESSION['nom'] ?? null ?><br>
+                        <?= $_SESSION['mail'] ?? null ?>
+                        
+                        <span style="margin-left: auto">
+                           
+                        
+                        </span>
+                    </span>
+            <span class="d-flex">
                 <ul>
                     <li><a href="../views/deconnexion.php" class="mt-1"><i class="bi bi-box-arrow-right text-white "></i></a></li>
                 </ul>
                 <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-secondary " type="submit">Rechercher</button>
-                        </form>
+               
+                  <form action="" method="post" style="display: flex;gap:15px;">   
+                    <input type="text" name="classe" placeholder="" class="form-control md-1" id="rech">   
+                  <input type="submit" name="verif" value="RECHERCHER" class="btn btn-info" id="search">    </form>
                     </div>
                 </span>
             </div>
@@ -56,8 +71,13 @@
                   $db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
                   $sql = $db->query("SELECT * FROM users WHERE mail != '$email' AND etat=1");
                   
-
-                        while($a = $sql->fetch()){
+                  if (isset($_POST["verif"])) {
+                    if (isset($_POST["classe"])) {
+                      $classe = $_POST["classe"];
+                      if (!empty($classe)) {
+                        $sl = $db->query("SELECT * FROM users WHERE mail != '$email' AND etat=1 AND Nom LIKE '%$classe%' OR Prenom LIKE '%$classe%'");
+                         
+                        while($a = $sl->fetch()){
                             
                                 echo ' <tr  scope="row">';
                                     echo '<td>'.$a['nom'].'</td>';
@@ -73,7 +93,26 @@
 
                                     
                                 echo '</tr>';
-                        }
+                            } } }  }
+
+                            if (empty($classe)) {
+                                while($a = $sql->fetch()){
+                                    
+                                        echo ' <tr  scope="row">';
+                                            echo '<td>'.$a['nom'].'</td>';
+                                            echo '<td>'.$a['prenom'].'</td>';
+                                            echo '<td>'.$a['mail'].'</td>';
+                                            echo '<td>'.$a['matricule'].'</td>';
+                                            echo '<td>'.$a['roles'].'</td>';
+                                        
+                                           
+        
+                                            
+        
+        
+                                            
+                                        echo '</tr>';
+                                    } }
                   
                   ?>
 

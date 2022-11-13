@@ -55,7 +55,7 @@ class ModelUser
     public function getUser($email)
     {
         try {
-            $sql = "SELECT * FROM `users` WHERE mail='$email'if etat='1'";
+            $sql = "SELECT * FROM `users` WHERE mail='$email'and etat='1'";
             $res = $this->db->query($sql);
             if ($res->rowCount() > 0){
                 return true;
@@ -93,45 +93,75 @@ class ModelUser
         try {
             $sql = "SELECT * FROM `users` WHERE mail='$email'";
             $res = $this->db->query($sql);
-            
+    
             if ($res->rowCount() > 0){
-               
-                /* if ($res['mail'] !== $ancienEmail) {
+                $res = $res->fetch();
+                if ($res['mail'] !== $ancienEmail) {
                     header("location: modification.php");
                     exit;
-                } */
-                $sql2 =  "UPDATE users SET mail='$email', SET prenom='$prenom', SET nom='$nom' WHERE mail='$ancienEmail'";
-                $this->db->exec($sql2);
-                header("location: admin.php");
-                exit;
+                }
             }
-            
+            $sql2 =  "UPDATE users SET mail='$email', prenom='$prenom', nom='$nom' WHERE mail='$ancienEmail'";
+            $this->db->exec($sql2);
+            header("location: admin.php");
+            exit;
             
         } catch (\Throwable $th) {
             //throw $th;
         }
     }
-    public function archiveUser($email,$prenom,$nom)
+    public function archiveUser($email)
     {
         try {
-            $sql = "SELECT * FROM `users` WHERE mail='$email'";
-            $res = $this->db->query($sql);
-            
-            if ($res->rowCount() > 0){
-               
-                /* if ($res['mail'] !== $ancienEmail) {
-                    header("location: modification.php");
-                    exit;
-                } */
-                $sql2 =  "UPDATE users SET mail='$email', SET prenom='$prenom', SET nom='$nom' WHERE mail='$email'";
-                $this->db->exec($sql2);
+
+                $sql =  "UPDATE users SET etat=0 WHERE mail='$email'";
+                $this->db->exec($sql);
                 header("location: admin.php");
                 exit;
-            }
-            
             
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+    public function desarchiveUser($email)
+    {
+        try {
+
+                $sql =  "UPDATE users SET etat=1 WHERE mail='$email'";
+                $this->db->exec($sql);
+                header("location: admin.php");
+                exit;
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+    public function switchRole($email)
+    {
+        try {
+            $user  = $this->selectUser($email);
+            
+            $sql = $user['roles'] == 'administrateur' ?  "UPDATE users SET roles='utilisateur' WHERE mail='$email'": "UPDATE users SET roles='administrateur' WHERE mail='$email'";
+            $this->db->exec($sql);
+            header("location: admin.php");
+            exit;
+        
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+    }
+    public function searchUser($email)
+    {
+        try {
+            $user  = $this->serchUser($email);
+            
+            $sql = $user['mail'];
+            $this->db->exec($sql);
+            header("location: admin.php");
+            exit;
+        
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
     }
 }

@@ -8,10 +8,10 @@ require "../models/models.php";
 if (isset($_POST["submit"])){
     $requeste = new ModelUser();
     $email=$_POST["email"];
-    $mot_de_passe=$_POST["password"];
+    $mot_de_passe=md5($_POST["password"]);
     $user = $requeste->selectUser($email);
     
-    if (count($user) === 0 || !password_verify($mot_de_passe, $user['mdp'])){
+    if (count($user) === 0 || $mot_de_passe != $user['mdp']){
         header('location: ../views/connexion.php?erreur=Email ou mot de passe incorrect');
         exit;
     }
@@ -36,7 +36,7 @@ if (isset($_POST["submit"])){
         $_SESSION['matricule'] = $user['matricule'];
         $_SESSION['nom'] = $user['nom'];
         $_SESSION['prenom'] = $user['prenom'];
-        $_SESSION['photo'] = $user['photo'];
+        $user['photo']  =  $_SESSION['photo'];
         $_SESSION['mail'] = $user['mail'];
         header('location: ../views/user.php');
         exit;

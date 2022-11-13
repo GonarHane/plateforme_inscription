@@ -29,7 +29,7 @@
                 <span class="d-flex justify-content-center">
                     <!-- pour l'affichage sur le profil -->
                     <span class="col-1 ">
-                        <img src="data:image/jpg;base64,<?= base64_encode($_SESSION['photo']) ?>" class="rounded-circle" height="60" width="60" alt="">
+                        <img src="data:image/png;base64,<?= base64_encode($_SESSION['photo']) ?>" class="rounded-circle" height="60" width="60" alt="">
                         <em><?= $_SESSION['matricule'] ?? null ?></em>
                     </span>
 
@@ -44,11 +44,11 @@
                     </span>
                     
                     <div class="ml-auto  mt-3 " style="margin-left:auto;max-height: 2.5rem;">
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
-                        </form>
-                    </div>
+               
+               <form action="" method="post" style="display: flex;gap:15px;">   
+                 <input type="text" name="classe" placeholder="" class="form-control md-1" id="rech">   
+               <input type="submit" name="verif" value="RECHERCHER" class="btn btn-info" id="search">    </form>
+                 </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 
                     <a href="../views/deconnexion.php" class="mt-1"><i class="bi bi-box-arrow-right text-white " style="font-size:40px;"></i></a>
@@ -74,40 +74,119 @@
                         <tr>
                             <?php
                             $email = $_SESSION['mail'];
-                            $db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
+                            
+                            if (isset($_GET['page']) && !empty($_GET['page'])) {
+                                $currentPage = (int) strip_tags($_GET['page']);
+                              } else {
+                                $currentPage = 1;
+                              }
+$db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
+                              $sq = $db->query("SELECT COUNT(*) AS etat FROM users WHERE mail != '$email' and etat=1;");
+                              $row = $sq->fetch();
+
+
                             $sql = $db->query("SELECT * FROM users WHERE mail != '$email' and etat=1");
+
+                              $nbArticles = (int) $row['etat'];
+                              
+                              // On détermine le nombre d'articles par page
+                              $parPage = 5;
+
+                              $pages = ceil($nbArticles / $parPage);
+
+// Calcul du 1er article de la page
+                           $premier = ($currentPage  * $parPage) - $parPage;
+                              
+                            
                             /* $sql = $db->query('SELECT * FROM users WHERE `roles` ="utilisateur" and etat=1'); */
-                            while ($a = $sql->fetch()) {
+                            $sql->bindValue(':premier', $premier, PDO::PARAM_INT);
+                            $sql->bindValue(':parpage', $parPage, PDO::PARAM_INT);
+                            if (isset($_POST["verif"])) {
+                                if (isset($_POST["classe"])) {
+                                  $classe = $_POST["classe"];
+                                  if (!empty($classe)) {
+                                    $sl = $db->query("SELECT * FROM users WHERE mail != '$email' AND etat=1 AND Nom LIKE '%$classe%' OR Prenom LIKE '%$classe%'");
+while ($a = $sl->fetch()) {
+                            ?>
 
-                                echo ' <tr  scope="row">';
-                                echo '<td class="border border-1 border-dark">' . $a['nom'] . '</td>';
-                                echo '<td class="border border-2 border-dark">' . $a['prenom'] . '</td>';
-                                echo '<td class="border border-2 border-dark">' . $a['mail'] . '</td>';
-                                echo '<td class="border border-2 border-dark">' . $a['matricule'] . '</td>';
-                                echo '<td class="border border-2 border-dark">' . $a['roles'] . '</td>';
+                                 <tr  scope="row">
+                                <td class="border border-1 border-dark"><?= $a['nom']?></td>
+                                <td class="border border-2 border-dark"><?= $a['prenom'] ?></td>
+                                <td class="border border-2 border-dark"><?= $a['mail'] ?></td>
+                                <td class="border border-2 border-dark"><?= $a['matricule'] ?></td>
+                                <td class="border border-2 border-dark"><?= $a['roles'] ?></td>
 
-                                echo '<td class= "border border-2 border-dark">
+                                <td class= "border border-2 border-dark">
 
                                     <span style="display:flex; justify-content:space-between;font-size:30px;">
-                                    <a title="modifier" href="modification.php?email='.$a['mail'].'"><i class="bi bi-pencil-square "></i></a>
-                                    <a title="archiver" href="archive.php?archive"><i class="bi bi-archive-fill text-red"></i></a>
-                                    <a title="switcher" href="changer.php?swite"><i class="bi bi-arrow-repeat "></i></a>
+                                    <a title="modifier" onclick="return confirm('Voulez vous vraiment modifier');" href="modification.php?email=<?=$a['mail']?>"><i class="bi bi-pencil-square "></i></a>
+                                    <a title="archiver" onclick="return confirm('Voulez vous vraiment archiver');" href="archive.php?email=<?=$a['mail']?>"><i class="bi bi-archive-fill text-red"></i></a>
+                                    <a title="switcher" href="switch.php?email=<?=$a['mail']?>"><i class="bi bi-arrow-repeat "></i></a>
                                     </span>
 
-                                    </td>';
+                                    </td>
 
 
 
-                                echo '</tr>';
-                            }
+                                </tr>
+                            <?php
+                                 }}}}
 
+                                 if (empty($classe)) {
+while ($a = $sql->fetch()) {
                             ?>
+
+                                 <tr  scope="row">
+                                <td class="border border-1 border-dark"><?= $a['nom']?></td>
+                                <td class="border border-2 border-dark"><?= $a['prenom'] ?></td>
+                                <td class="border border-2 border-dark"><?= $a['mail'] ?></td>
+                                <td class="border border-2 border-dark"><?= $a['matricule'] ?></td>
+                                <td class="border border-2 border-dark"><?= $a['roles'] ?></td>
+
+                                <td class= "border border-2 border-dark">
+
+                                    <span style="display:flex; justify-content:space-between;font-size:30px;">
+                                    <a title="modifier" onclick="return confirm('Voulez vous vraiment modifier');" href="modification.php?email=<?=$a['mail']?>"><i class="bi bi-pencil-square "></i></a>
+                                    <a title="archiver" onclick="return confirm('Voulez vous vraiment archiver');" href="archive.php?email=<?=$a['mail']?>"><i class="bi bi-archive-fill text-red"></i></a>
+                                    <a title="switcher" href="switch.php?email=<?=$a['mail']?>"><i class="bi bi-arrow-repeat "></i></a>
+                                    </span>
+
+                                    </td>
+
+
+
+                                </tr>
+                            <?php
+                                 } }
+?>
+
                         </tr>
 
                     </tbody>
                 </table>
             </div>
 
-        </div>
+            <span class="d-flex justify-content-center">
+        <nav>
+  <ul class="pagination">
+
+
+    <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+    <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
+      <a href="admin.php?page=<?= $currentPage - 1 ?>" class="page-link">
+        < </a>
+    </li>
+    <?php for ($page = 1; $page <= $pages; $page++) : ?>
+      <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
+      <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+        <a href="admin.php?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+      </li>
+    <?php endfor ?>
+    <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+    <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+      <a href="admin.php?page=<?= $currentPage + 1 ?>" class="page-link">></a>
+    </li>
+  </ul>
+</nav></span> </div>
     </body>
 </html>
