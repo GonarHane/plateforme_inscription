@@ -47,10 +47,14 @@
     
     <div class="row">
         <div class="col-lg-10 col-lg-offset-2">
+            
             <form id="connection" method="post" action="../controllers/trtmtConnect.php" role="form">
             <div class="heading">
 
 <h2> Connection</h2>
+<div>
+    <span class="text-danger"><?= $_GET['erreur'] ?></span>
+</div>
 </div>
 <div class="divider"></div>
 <div class="row">

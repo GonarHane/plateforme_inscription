@@ -30,21 +30,20 @@ class ModelUser
     public function ajoutUser($nom,$prenom,$mot_de_passe,$role,$matricule,$email, $photo,$date_heure){
            
         try {
-            $sql=$this->db->prepare('INSERT INTO `user` (`nom`, `prenom`,`mdp`,`roles`,`matricule`,`etat`,`mail`, `photo`,`date_ajout`)
-                                        VALUES (:nom,:prenom,:mot_de_passe,:roles,:matricule,:etat,:email, :photo,:date_heure)');
+            $sql=$this->db->prepare('INSERT INTO `users` (`nom`, `prenom`,`mdp`,`roles`,`matricule`,`etat`,`mail`, `photo`,`date_ajout`)
+                                        VALUES (:nom,:prenom,:mdp,:roles,:matricule,:etat,:email, :photo,:date_ajout)');
            
-                    $sql->execute(array(
-                        'matricule' => $matricule,
-                        'nom' =>$nom,
-                        'prenom' => $prenom,
-                        'mail'=>$email,                       
-                        'roles' => $role,
-                        'mdp' => $mot_de_passe,
-                        'etat' => 1,
-                        'date_ajout'=> $date_heure,
-                        'photo' => $photo
-                    
-                    ));  
+            $sql->execute(array(
+                'nom' =>$nom,
+                'prenom' => $prenom,
+                'mdp' => $mot_de_passe,
+                'roles' => $role,
+                'matricule' => $matricule,
+                'etat' => 1,
+                'email'=>$email,                       
+                'photo' => $photo,
+                'date_ajout'=> $date_heure
+            ));
                 
     
         } catch (\Throwable $th) {
@@ -55,7 +54,7 @@ class ModelUser
     public function getUser($email)
     {
         try {
-            $sql = "SELECT * FROM `users` WHERE mail='$email'and etat='1'";
+            $sql = "SELECT * FROM `users` WHERE mail='$email'and etat= 1";
             $res = $this->db->query($sql);
             if ($res->rowCount() > 0){
                 return true;

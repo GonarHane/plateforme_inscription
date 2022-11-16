@@ -10,9 +10,15 @@ if (isset($_POST["submit"])){
     $email=$_POST["email"];
     $mot_de_passe=md5($_POST["password"]);
     $user = $requeste->selectUser($email);
-    
-    if (count($user) === 0 || $mot_de_passe != $user['mdp']){
+    /* var_dump($mot_de_passe);
+    var_dump($user['mdp']);
+    exit; */
+    if ($user === null || $mot_de_passe != $user['mdp']){
         header('location: ../views/connexion.php?erreur=Email ou mot de passe incorrect');
+        exit;
+    }
+    if ($user['etat'] === 0) {
+        header('location: ../views/connexion.php?erreur=Votre compte a été archivé');
         exit;
     }
     /* var_dump($_POST); */

@@ -91,9 +91,9 @@ $photo = $POST["photo"];
                         <p class="comments d-none" id="confPass">mot de passe non conforme</p>
                          <p class="comments d-none" id="confPassConform">mots de passe non conformes</p> 
                     </div>
-                    <div class="col-md-6 mb-2">
+                     <div class="col-md-6 mb-2">
                         <label for="photo" class="form-label">Photo</label>
-                        <input class="form-control" type="file" name="photo" id="formFile" >
+                        <input class="form-control" type="file" name="photo" id="formFile" > 
                     
                     </div> 
                     <div class="col-md-6-offset-6">

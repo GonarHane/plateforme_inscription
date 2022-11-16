@@ -10,6 +10,10 @@ if (isset($_GET['email'])) {
   if(isset($_POST["submit"]))
   {
     $message = "";
+    if(empty($_POST["email"]) || empty($_POST["prenom"]) || empty($_POST["nom"])) {
+        header("location: modification.php?erreur=Veuillez remplir tous les champs");
+        exit;
+    }
       if(isset($_POST["email"]) && isset($_POST["prenom"]) && isset($_POST["nom"]))
       {
          
@@ -51,6 +55,9 @@ if (isset($_GET['email'])) {
             <div class="heading">
 
             <h2> modification</h2>
+            <div>
+                <span class="text-danger"><?= $_GET['erreur'] ?? null?></span>
+            </div>
         </div>
         <div class="divider"></div>
         <div class="row">
@@ -89,7 +96,7 @@ if (isset($_GET['email'])) {
     </div>
      
 
-<script src="./js/index.js"></script> 
+<script src="./js/modif.js"></script> 
 </body>
 
 </html>

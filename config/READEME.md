@@ -20,7 +20,7 @@ Son nom, son prénom, sa matricule ainsi que sa photo s’affichent sur l’ent�
 
 
 Pour l’ « administrateur »
-Si l’usager connecté est un « administrateur », une page s’affiche dès qu’il appuie sur le bouton se « connecter » avec les options suivantes ;
+Si l’usager connecté est un « administrateur », une page s’affiche dès qu’il appuie sur le bouton se « connecter » avec les colonnes suivantes ;
 Son nom, son prénom, son numéro de matricule son mentionnés sur l’entête ainsi qu’une barre de recherche pour trouver des usagers selon leur nom, prénom, adresse email et le bouton « se déconnecter ». en plus il aura accès à la liste des usagers actifs et inactifs.
 
 Dans le tableau des utilisateurs actifs, l’administrateur pourra mettre à jour  les informations des autres usagers, archiver un utilisateur, grâce aux boutons prévus à ces effets.

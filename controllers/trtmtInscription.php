@@ -25,7 +25,10 @@ if (isset($_POST['submit'])){
         $email=$_POST["email"];
         $roles=$_POST["role"];
         $mdp=md5($_POST["password1"]);
-        $photo=$_POST["photo"];
+        $photo = null;
+        if($_FILES["photo"]["size"] !== 0) {
+            $photo= file_get_contents($_FILES["photo"]["tmp_name"]);
+        }
 
         /* $matricule=$requeste->generateMatricule(); */
         $requeste = new ModelUser();
@@ -36,19 +39,17 @@ if (isset($_POST['submit'])){
             exit;
         }
         $mat = $requeste->generateMatricule();
-     
+        $date_heure = date('y-m-d h:i:s');
+        $requeste->ajoutUser($nom,$prenom,$mdp,$roles,$mat,$email, $photo,$date_heure); 
         //insertion dans bd
-        $insert = $bd -> query ("INSERT INTO users (matricule, nom, prenom, mail, roles, mdp) VALUES('$mat','$nom','$prenom','$email', '$roles', '$mdp')");
+        //$insert = $bd -> query ("INSERT INTO users (matricule, nom, prenom, mail, roles, mdp) VALUES('$mat','$nom','$prenom','$email', '$roles', '$mdp')");
        
         header('location:../views/connexion.php');
         exit;
     }
 
     
-    echo"sumit";
 
     
     
 }
-    
-echo"case manquant";

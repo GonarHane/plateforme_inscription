@@ -47,8 +47,9 @@
                
                <form action="" method="post" style="display: flex;gap:15px;">   
                  <input type="text" name="classe" placeholder="" class="form-control md-1" id="rech">   
-               <input type="submit" name="verif" value="RECHERCHER" class="btn btn-info" id="search">    </form>
+               <input type="submit" name="verif" value="RECHERCHER" class="btn btn-info" id="search"></form>
                  </div>
+                 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 
                     <a href="../views/deconnexion.php" class="mt-1"><i class="bi bi-box-arrow-right text-white " style="font-size:40px;"></i></a>
@@ -75,12 +76,13 @@
                             <?php
                             $email = $_SESSION['mail'];
                             
+                            /* Pagination req start */
                             if (isset($_GET['page']) && !empty($_GET['page'])) {
                                 $currentPage = (int) strip_tags($_GET['page']);
                               } else {
                                 $currentPage = 1;
                               }
-$db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
+                              $db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
                               $sq = $db->query("SELECT COUNT(*) AS etat FROM users WHERE mail != '$email' and etat=1;");
                               $row = $sq->fetch();
 
@@ -97,10 +99,10 @@ $db = new PDO('mysql:host=localhost;dbname=inscription;', 'root', '');
 // Calcul du 1er article de la page
                            $premier = ($currentPage  * $parPage) - $parPage;
                               
+                            $mat = $_SESSION['matricule'];
+                            $sql = $db->query("SELECT * FROM users WHERE etat=1 and matricule!='$mat'  LIMIT $premier, $parPage");
+                            /* Pagination req fin */
                             
-                            /* $sql = $db->query('SELECT * FROM users WHERE `roles` ="utilisateur" and etat=1'); */
-                            $sql->bindValue(':premier', $premier, PDO::PARAM_INT);
-                            $sql->bindValue(':parpage', $parPage, PDO::PARAM_INT);
                             if (isset($_POST["verif"])) {
                                 if (isset($_POST["classe"])) {
                                   $classe = $_POST["classe"];
@@ -168,6 +170,7 @@ while ($a = $sql->fetch()) {
 
             <span class="d-flex justify-content-center">
         <nav>
+          <!-- Pagination start -->
   <ul class="pagination">
 
 
@@ -187,6 +190,7 @@ while ($a = $sql->fetch()) {
       <a href="admin.php?page=<?= $currentPage + 1 ?>" class="page-link">></a>
     </li>
   </ul>
+  <!-- Pagination end -->
 </nav></span> </div>
     </body>
 </html>
